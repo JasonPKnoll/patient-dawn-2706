@@ -1,12 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Team do
-  describe 'relationships' do
-    it { should have_many(:players) }
-    it { should belong_to(:competition) }
-  end
-
-  describe "instance methods" do
+RSpec.describe Competition do
+  describe "competition index" do
     before(:each) do
       @comp_1 = Competition.create!(name: "Ironman Triathlon")
 
@@ -22,12 +17,27 @@ RSpec.describe Team do
 
       @plager_3_tx = @tx.players.create!(name: "Jared", age: 2)
       @plager_4_tx = @tx.players.create!(name: "Nichole", age: 18)
+
+      visit "/competitions/#{@comp_1.id}/teams/"
     end
 
-    it "calculates average ages of players" do
-      expect(Team.average_age_of_players[0].average.to_f.round(2)).to eq(31.0)
-      expect(Team.average_age_of_players[1].average.to_f.round(2)).to eq(23.0)
-      expect(Team.average_age_of_players[2].average.to_f.round(2)).to eq(10.0)
+    it "can visit page" do
+      visit "/competitions/#{@comp_1.id}/teams/"
+      expect(page).to have_content("All Teams for #{@comp_1.name}")
     end
+
+    it "have all teams nicknames" do
+      expect(page).to have_content("#{@az.nickname}")
+      expect(page).to have_content("#{@ny.nickname}")
+      expect(page).to have_content("#{@tx.nickname}")
+    end
+
+    it "has all teams average age of its players" do
+      expect(page).to have_content(2)
+      expect(page).to have_content(2)
+      expect(page).to have_content(2)
+    end
+
+    it "has teams sorted by the average players age"
   end
 end

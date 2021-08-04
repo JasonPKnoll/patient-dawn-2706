@@ -12,11 +12,11 @@ RSpec.describe Competition do
       @plager_1_az = @az.players.create!(name: "Sarah", age: 21)
       @plager_2_az = @az.players.create!(name: "Jim", age: 25)
 
-      @plager_3_ny = @az.players.create!(name: "Mike", age: 32)
-      @plager_4_ny = @az.players.create!(name: "Jenny", age: 30)
+      @plager_3_ny = @ny.players.create!(name: "Mike", age: 32)
+      @plager_4_ny = @ny.players.create!(name: "Jenny", age: 30)
 
-      @plager_3_tx = @az.players.create!(name: "Jared", age: 2)
-      @plager_4_tx = @az.players.create!(name: "Nichole", age: 18)
+      @plager_3_tx = @tx.players.create!(name: "Jared", age: 2)
+      @plager_4_tx = @tx.players.create!(name: "Nichole", age: 18)
 
       visit "/competitions/#{@comp_1.id}"
     end
