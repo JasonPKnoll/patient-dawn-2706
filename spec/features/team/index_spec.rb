@@ -33,11 +33,14 @@ RSpec.describe Competition do
     end
 
     it "has all teams average age of its players" do
-      expect(page).to have_content(2)
-      expect(page).to have_content(2)
-      expect(page).to have_content(2)
+      expect(page).to have_content(31.0)
+      expect(page).to have_content(23.0)
+      expect(page).to have_content(10.0)
     end
 
-    it "has teams sorted by the average players age"
+    it "has teams sorted by the average players age" do
+      expect("31.0").to appear_before("23.0")
+      expect("23.0").to appear_before("10.0")
+    end
   end
 end

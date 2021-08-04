@@ -6,7 +6,7 @@ RSpec.describe Team do
     it { should belong_to(:competition) }
   end
 
-  describe "instance methods" do
+  describe "class methods" do
     before(:each) do
       @comp_1 = Competition.create!(name: "Ironman Triathlon")
 
