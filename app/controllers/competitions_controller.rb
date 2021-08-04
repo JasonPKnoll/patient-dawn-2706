@@ -6,6 +6,7 @@ class CompetitionsController < ApplicationController
 
   def show
     @competition = Competition.find(params[:id])
+    @teams = @competition.teams
   end
 
 end
