@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2021_08_03_162719) do
 
   create_table "competitions", force: :cascade do |t|
     t.string "name"
+    t.string "location"
+    t.string "sport"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,12 +35,12 @@ ActiveRecord::Schema.define(version: 2021_08_03_162719) do
   create_table "teams", force: :cascade do |t|
     t.string "hometown"
     t.string "nickname"
-    t.bigint "competitions_id"
+    t.bigint "competition_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["competitions_id"], name: "index_teams_on_competitions_id"
+    t.index ["competition_id"], name: "index_teams_on_competition_id"
   end
 
   add_foreign_key "players", "teams"
-  add_foreign_key "teams", "competitions", column: "competitions_id"
+  add_foreign_key "teams", "competitions"
 end

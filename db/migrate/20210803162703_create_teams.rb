@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
     create_table :teams do |t|
       t.string :hometown
       t.string :nickname
-      t.references :competitions, foreign_key: true
+      t.references :competition, foreign_key: true
 
       t.timestamps
     end
