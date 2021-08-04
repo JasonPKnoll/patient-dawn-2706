@@ -46,5 +46,24 @@ RSpec.describe Competition do
     it "shows the average age of all players" do
       expect(page).to have_content(21.33)
     end
+
+    it "has link to register a new team" do
+      click_link "Register New Team"
+    end
+
+    it "can create new team" do
+      click_link "Register New Team"
+
+      expect(current_path).to eq("/competitions/#{@comp_1.id}/teams/new")
+
+      fill_in "nickname", with: "CA"
+      fill_in "hometown", with: "Sacramento"
+
+      click_button "Submit"
+
+      expect(current_path).to eq("/competitions/#{@comp_1.id}")
+      expect(page).to have_content(@comp_1.teams.last.nickname)
+      expect(page).to have_content(@comp_1.teams.last.hometown)
+    end
   end
 end
