@@ -3,5 +3,5 @@
 <h2>Teams: </h2>
 <% @teams.average_age_of_players.each do |team| %>
   Team: <%= team.nickname %>
-  Players Average Ages:<%= team.average %>
+  || Players Average Ages: <%= team.average %><br>
 <% end %>
